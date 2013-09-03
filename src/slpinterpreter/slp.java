@@ -1,9 +1,24 @@
 package slpinterpreter;
 
-abstract class Stm { 
+/* Class: Construct
+ * Description: The base abstract class that all other classes for SLP (straight line programming) language belong to
+ *   			Beyond a Construct which encompasses all the elements in a SLP program there are three other major components,
+ *   			namely Expressions,Statements, and StatementLists.
+ */
+abstract class Construct {
 	
-	abstract public String instanceOf();
+	abstract public String instanceOf();  // Return simple basename of the class
+	abstract public void visit();   	  // Visits nodes according to type (Expression, Statement, etc..)
 }
+
+/*
+ * Three of the main types of constructs in our SLP implementation
+ */
+abstract class Stm extends Construct{ }
+abstract class Exp extends Construct { }
+abstract class ExpList extends Construct { }
+
+// *** classes for Statements (Stm)
 
 class CompoundStm extends Stm {
 	
@@ -19,6 +34,8 @@ class CompoundStm extends Stm {
 	public String instanceOf() {
 		return CompoundStm.class.getSimpleName();
 	}
+	
+	public void visit() { }
 }
 
 class AssignStm extends Stm {
@@ -30,6 +47,9 @@ class AssignStm extends Stm {
 		id = i;
 		exp = e;
 	}
+	
+	public void visit() { }
+	
 	
 	public String instanceOf() {
 		return AssignStm.class.getSimpleName();
@@ -44,16 +64,18 @@ class PrintStm extends Stm {
 		exps = e;
 	}
 	
+	public void visit() { }
+	
 	public String instanceOf() {
 		return PrintStm.class.getSimpleName();
 	}
 }
 
-abstract class Exp { 
-	
-	abstract public String instanceOf();
-}
+// *** end of Statement classes
 
+
+
+// *** Classes for Expression (Exp)
 class IdExp extends Exp {
 	
 	String id;
@@ -61,6 +83,8 @@ class IdExp extends Exp {
 	IdExp(String i) {
 		id = i;
 	}
+	
+	public void visit() { }
 	
 	public String instanceOf() {
 		return IdExp.class.getSimpleName();
@@ -75,6 +99,8 @@ class NumExp extends Exp {
 		num = n;
 	}
 	
+	public void visit() { }
+	
 	public String instanceOf() {
 		return NumExp.class.getSimpleName();
 	}
@@ -84,13 +110,15 @@ class OpExp extends Exp {
 	
 	Exp left, right;
 	int oper;
-	static final int Plus = 1, Minus = 2, Times = 3, Div = 4;
+	public static final int Plus = 1, Minus = 2, Times = 3, Division = 4;
 
 	OpExp(Exp l, int o, Exp r) {
 		left = l;
 		oper = o;
 		right = r;
 	}
+	
+	public void visit() { }
 	
 	public String instanceOf() {
 		return OpExp.class.getSimpleName();
@@ -107,16 +135,17 @@ class EseqExp extends Exp {
 		exp = e;
 	}
 	
+	public void visit() { }
+	
 	public String instanceOf() {
 		return EseqExp.class.getSimpleName();
 	}
 }
 
-abstract class ExpList { 
-	
-	abstract public String instanceOf();
-}
+// *** end of Expression classes
 
+
+// *** Classes for Expression Lists (ExpList)
 class PairExpList extends ExpList {
 	
 	Exp head;
@@ -127,6 +156,8 @@ class PairExpList extends ExpList {
 		head = h;
 		tail = t;
 	}
+	
+	public void visit() { }
 	
 	public String instanceOf() {
 		return PairExpList.class.getSimpleName();
@@ -142,7 +173,15 @@ class LastExpList extends ExpList {
 		head = h;
 	}
 	
+	public void visit() { }
+	
 	public String instanceOf() {
 		return LastExpList.class.getSimpleName();
 	}
 }
+
+// *** end of Expression List classes
+
+
+
+// EOF
