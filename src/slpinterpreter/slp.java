@@ -8,7 +8,7 @@ package slpinterpreter;
 abstract class Construct {
 	
 	abstract public String instanceOf();  // Return simple basename of the class
-	abstract public void visit();   	  // Visits nodes according to type (Expression, Statement, etc..)
+	abstract public void accept(Visitor v);   	  // Visits nodes according to type (Expression, Statement, etc..)
 }
 
 /*
@@ -31,11 +31,17 @@ class CompoundStm extends Stm {
 		stm2 = s2;
 	}
 
+	public void accept(Visitor e) { 
+		
+	}
+	
+	public Stm getStmOne() { return stm1; }
+	public Stm getStmTwo() { return stm2; }
+	
 	public String instanceOf() {
 		return CompoundStm.class.getSimpleName();
 	}
 	
-	public void visit() { }
 }
 
 class AssignStm extends Stm {
@@ -48,7 +54,9 @@ class AssignStm extends Stm {
 		exp = e;
 	}
 	
-	public void visit() { }
+	public void accept(Visitor e) { 
+		
+	}
 	
 	
 	public String instanceOf() {
@@ -64,8 +72,9 @@ class PrintStm extends Stm {
 		exps = e;
 	}
 	
-	public void visit() { }
-	
+	public void accept(Visitor e) { 
+		
+	}
 	public String instanceOf() {
 		return PrintStm.class.getSimpleName();
 	}
@@ -84,7 +93,9 @@ class IdExp extends Exp {
 		id = i;
 	}
 	
-	public void visit() { }
+	public void accept(Visitor e) { 
+		
+	}
 	
 	public String instanceOf() {
 		return IdExp.class.getSimpleName();
@@ -99,7 +110,9 @@ class NumExp extends Exp {
 		num = n;
 	}
 	
-	public void visit() { }
+	public void accept(Visitor e) { 
+		
+	}
 	
 	public String instanceOf() {
 		return NumExp.class.getSimpleName();
@@ -118,7 +131,9 @@ class OpExp extends Exp {
 		right = r;
 	}
 	
-	public void visit() { }
+	public void accept(Visitor e) { 
+		
+	}
 	
 	public String instanceOf() {
 		return OpExp.class.getSimpleName();
@@ -135,7 +150,9 @@ class EseqExp extends Exp {
 		exp = e;
 	}
 	
-	public void visit() { }
+	public void accept(Visitor e) { 
+		
+	}
 	
 	public String instanceOf() {
 		return EseqExp.class.getSimpleName();
@@ -151,13 +168,15 @@ class PairExpList extends ExpList {
 	Exp head;
 	ExpList tail;
 
-	public PairExpList(){}
+	
 	public PairExpList(Exp h, ExpList t) {
 		head = h;
 		tail = t;
 	}
 	
-	public void visit() { }
+	public void accept(Visitor e) { 
+		
+	}
 	
 	public String instanceOf() {
 		return PairExpList.class.getSimpleName();
@@ -168,12 +187,14 @@ class LastExpList extends ExpList {
 
 	Exp head;
 
-	public LastExpList(){}
+
 	public LastExpList(Exp h) {
 		head = h;
 	}
 	
-	public void visit() { }
+	public void accept(Visitor e) { 
+		
+	}
 	
 	public String instanceOf() {
 		return LastExpList.class.getSimpleName();

@@ -1,11 +1,25 @@
 package slpinterpreter;
 
-public class Interpreter {
+public class Interpreter implements Visitor {
     
 	
-	static void Interp(Stm s) {
+	public Interpreter(Stm s) {
     	// I write this part
+		interp(s);
+		
     }
+	
+	public void interp(Stm s) {
+		
+	}
+	
+	
+	
+	// Start of visitor methods
+	
+	//... START HERE TOMORROW
+	
+	// End of visitor methods
     
 	static int maxArgs(Stm s) {
 		// I write this part...
@@ -14,6 +28,6 @@ public class Interpreter {
     
 	public static void main(String args[]) throws java.io.IOException {
         System.out.println(maxArgs(Program.prog));
-        Interp(Program.prog);
+        new Interpreter(Program.prog);
     }
 }
