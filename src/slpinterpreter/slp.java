@@ -24,23 +24,27 @@ class CompoundStm extends Stm {
 	
 	Stm stm1, stm2;
 
-	public CompoundStm() { }
-	
+
 	public CompoundStm(Stm s1, Stm s2) {
 		stm1 = s1;
 		stm2 = s2;
 	}
 
+	@Override
 	public void accept(Visitor e) { 
-		
+		e.visitCompoundStm(this); 
 	}
 	
-	public Stm getStmOne() { return stm1; }
-	public Stm getStmTwo() { return stm2; }
-	
+	// Return class name that object is instance of
+	@Override
 	public String instanceOf() {
 		return CompoundStm.class.getSimpleName();
 	}
+	
+	// Getters/Setters
+	public Stm getStmOne() { return stm1; }
+	public Stm getStmTwo() { return stm2; }
+	
 	
 }
 
@@ -54,13 +58,26 @@ class AssignStm extends Stm {
 		exp = e;
 	}
 	
+	@Override
 	public void accept(Visitor e) { 
-		
+		e.visitAssignStm(this);
 	}
 	
-	
+	@Override
 	public String instanceOf() {
 		return AssignStm.class.getSimpleName();
+	}
+	
+	// Setters/Getters
+	
+	// Return identifier on LHS
+	public String getId() {
+		return this.id;
+	}
+	
+	// Return expression on RHS
+	public Exp getExp() {
+		return this.exp;
 	}
 }
 
@@ -72,9 +89,12 @@ class PrintStm extends Stm {
 		exps = e;
 	}
 	
+	@Override
 	public void accept(Visitor e) { 
-		
+		e.visitPrintStm(this);
 	}
+	
+	@Override
 	public String instanceOf() {
 		return PrintStm.class.getSimpleName();
 	}
@@ -93,10 +113,12 @@ class IdExp extends Exp {
 		id = i;
 	}
 	
+	@Override
 	public void accept(Visitor e) { 
-		
+		e.visitIdExp(this);
 	}
 	
+	@Override
 	public String instanceOf() {
 		return IdExp.class.getSimpleName();
 	}
@@ -110,10 +132,12 @@ class NumExp extends Exp {
 		num = n;
 	}
 	
+	@Override
 	public void accept(Visitor e) { 
-		
+		e.visitNumExp(this);
 	}
 	
+	@Override
 	public String instanceOf() {
 		return NumExp.class.getSimpleName();
 	}
@@ -131,10 +155,12 @@ class OpExp extends Exp {
 		right = r;
 	}
 	
+	@Override
 	public void accept(Visitor e) { 
-		
+		e.visitOpExp(this);
 	}
 	
+	@Override
 	public String instanceOf() {
 		return OpExp.class.getSimpleName();
 	}
@@ -151,7 +177,7 @@ class EseqExp extends Exp {
 	}
 	
 	public void accept(Visitor e) { 
-		
+		e.visitEseqExp(this);
 	}
 	
 	public String instanceOf() {

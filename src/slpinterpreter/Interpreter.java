@@ -1,26 +1,18 @@
 package slpinterpreter;
 
-public class Interpreter implements Visitor {
-    
+import java.util.HashMap;
+import java.util.Map;
+
+public class Interpreter {
 	
-	public Interpreter(Stm s) {
-    	// I write this part
-		interp(s);
+	public static void interp(Stm s) {
+		Map<String, Integer> env = new HashMap<String, Integer>();
+		InterpVisitor interpV = new InterpVisitor(env);
 		
-    }
-	
-	public void interp(Stm s) {
-		
+		// Begin crawling..
+		s.accept(interpV);
 	}
 	
-	
-	
-	// Start of visitor methods
-	
-	//... START HERE TOMORROW
-	
-	// End of visitor methods
-    
 	static int maxArgs(Stm s) {
 		// I write this part...
 		return 0;
@@ -28,6 +20,6 @@ public class Interpreter implements Visitor {
     
 	public static void main(String args[]) throws java.io.IOException {
         System.out.println(maxArgs(Program.prog));
-        new Interpreter(Program.prog);
+        interp(Program.prog);
     }
 }
