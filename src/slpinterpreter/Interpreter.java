@@ -21,5 +21,10 @@ public class Interpreter {
 	public static void main(String args[]) throws java.io.IOException {
         System.out.println(maxArgs(Program.prog));
         interp(Program.prog);
+        System.out.println("Finished run 1\nStarting run two...");
+        interp(Program.prog1);
+        
+        
+        
     }
 }

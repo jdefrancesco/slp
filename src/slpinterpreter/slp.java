@@ -22,7 +22,7 @@ abstract class ExpList extends Construct { }
 
 class CompoundStm extends Stm {
 	
-	Stm stm1, stm2;
+	private Stm stm1, stm2;
 
 
 	public CompoundStm(Stm s1, Stm s2) {
@@ -50,8 +50,8 @@ class CompoundStm extends Stm {
 
 class AssignStm extends Stm {
 	
-	String id;
-	Exp exp;
+	private String id;
+	private Exp exp;
 
 	AssignStm(String i, Exp e) {
 		id = i;
@@ -83,7 +83,7 @@ class AssignStm extends Stm {
 
 class PrintStm extends Stm {
 	
-	ExpList exps;
+	private ExpList exps;
 
 	PrintStm(ExpList e) {
 		exps = e;
@@ -98,16 +98,20 @@ class PrintStm extends Stm {
 	public String instanceOf() {
 		return PrintStm.class.getSimpleName();
 	}
+	
+	// Setters/Getters
+	public ExpList getExpList() {
+		return exps;
+	}
 }
 
 // *** end of Statement classes
 
 
-
 // *** Classes for Expression (Exp)
 class IdExp extends Exp {
 	
-	String id;
+	private String id;
 
 	IdExp(String i) {
 		id = i;
@@ -122,11 +126,15 @@ class IdExp extends Exp {
 	public String instanceOf() {
 		return IdExp.class.getSimpleName();
 	}
+	
+	public String getId() {
+		return id;
+	}
 }
 
 class NumExp extends Exp {
 	
-	int num;
+	private int num;
 
 	NumExp(int n) {
 		num = n;
@@ -140,6 +148,11 @@ class NumExp extends Exp {
 	@Override
 	public String instanceOf() {
 		return NumExp.class.getSimpleName();
+	}
+	
+	// Setters/Getters
+	public int getNumber() {
+		return num;
 	}
 }
 
@@ -164,6 +177,19 @@ class OpExp extends Exp {
 	public String instanceOf() {
 		return OpExp.class.getSimpleName();
 	}
+	
+	// Setters/Getters
+	public int getOperation() {
+		return oper;
+	}
+	
+	public Exp getLeftExp() {
+		return left;
+	}
+	
+	public Exp getRightExp() {
+		return right;
+	}
 }
 
 class EseqExp extends Exp {
@@ -176,12 +202,24 @@ class EseqExp extends Exp {
 		exp = e;
 	}
 	
+	@Override
 	public void accept(Visitor e) { 
 		e.visitEseqExp(this);
 	}
 	
+	@Override
 	public String instanceOf() {
 		return EseqExp.class.getSimpleName();
+	}
+	
+	// Getters/Setters
+	
+	public Stm getStm() {
+		return stm;
+	}
+	
+	public Exp getExp() {
+		return exp;
 	}
 }
 
@@ -200,12 +238,23 @@ class PairExpList extends ExpList {
 		tail = t;
 	}
 	
+	@Override
 	public void accept(Visitor e) { 
-		
+		e.visitPairExpList(this);
 	}
 	
+	@Override
 	public String instanceOf() {
 		return PairExpList.class.getSimpleName();
+	}
+	
+	// Getters/Setters
+	public Exp getExp() {
+		return head;
+	}
+	
+	public ExpList getExpList() {
+		return tail;
 	}
 }
 
@@ -218,12 +267,18 @@ class LastExpList extends ExpList {
 		head = h;
 	}
 	
+	@Override
 	public void accept(Visitor e) { 
-		
+		e.visitLastExpList(this);
 	}
 	
+	@Override
 	public String instanceOf() {
 		return LastExpList.class.getSimpleName();
+	}
+	
+	public Exp getExp() {
+		return head;
 	}
 }
 

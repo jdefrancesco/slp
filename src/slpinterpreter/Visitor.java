@@ -3,12 +3,12 @@ package slpinterpreter;
 public interface Visitor {
 	
 	// Stm visitors
-	void visitCompoundStm(Stm stm);
+	void visitCompoundStm(CompoundStm stm );
 	void visitAssignStm(AssignStm stm);
 	void visitPrintStm(PrintStm stm);
 	
 	// Exp visitors
-	void visitIdExp(IdExp exp);
+	void visitIdExp(IdExp exp) ;
 	void visitNumExp(NumExp exp);
 	void visitOpExp(OpExp exp);
 	void visitEseqExp(EseqExp exp);

@@ -9,4 +9,8 @@ public class Program {
 							OpExp.Minus, new NumExp(1))))), new OpExp(
 					new NumExp(10), OpExp.Times, new IdExp("a")))),
 			new PrintStm(new LastExpList(new IdExp("b")))));
+	
+	
+	// Should output zero
+	static Stm prog1 = new AssignStm("a", new NumExp(10));
 }
