@@ -11,6 +11,7 @@ public class Program {
 			new PrintStm(new LastExpList(new IdExp("b")))));
 	
 	
+	
 	// Should output zero
-	static Stm prog1 = new AssignStm("a", new NumExp(10));
+	static Stm prog1 = new AssignStm("a", new NumExp(10));	
 }

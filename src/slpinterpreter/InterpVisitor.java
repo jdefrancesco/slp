@@ -95,10 +95,7 @@ public class InterpVisitor implements Visitor {
 	// This will actually output our results when time comes
 	public void visitPairExpList(PairExpList pairExpList) {
 		pairExpList.getExp().accept(this);
-		
-		// BUG: printing zero
 		System.out.println(value);
-		
 		pairExpList.getExpList().accept(this);
 	}
 	

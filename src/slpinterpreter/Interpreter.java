@@ -9,22 +9,36 @@ public class Interpreter {
 		Map<String, Integer> env = new HashMap<String, Integer>();
 		InterpVisitor interpV = new InterpVisitor(env);
 		
-		// Begin crawling..
+		// Begin interpreting 
 		s.accept(interpV);
+
+		
+		/* For DEBUGGING
+		 * print out hashmap values...
+		 */
+		System.out.println("---------------------------------");
+		System.out.println("Dumping final environment state after last run...");
+		
+		// Dumping environment of last run.. (the hashmap)
+        for(Map.Entry<String, Integer> entry : env.entrySet()) {
+        	System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
 	}
 	
 	static int maxArgs(Stm s) {
-		// I write this part...
+		// TODO: Finish thing. 
 		return 0;
 	}
     
 	public static void main(String args[]) throws java.io.IOException {
-        System.out.println(maxArgs(Program.prog));
-        interp(Program.prog);
-        System.out.println("Finished run 1\nStarting run two...");
-        interp(Program.prog1);
         
+		//System.out.println(maxArgs(Program.prog));
         
+		// Program One
+		interp(Program.prog);
+    
+        // Program Two
+        //interp(Program.prog1);
         
     }
 }
