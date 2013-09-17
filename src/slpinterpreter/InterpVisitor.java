@@ -64,7 +64,7 @@ public class InterpVisitor implements Visitor {
 			exp.getLeftExp().accept(this);
 			temp = value;
 			exp.getRightExp().accept(this);
-			value -= temp;
+			value = temp - value;
 			return;
 			
 		case OpExp.Times:
@@ -95,7 +95,10 @@ public class InterpVisitor implements Visitor {
 	// This will actually output our results when time comes
 	public void visitPairExpList(PairExpList pairExpList) {
 		pairExpList.getExp().accept(this);
+		
+		// BUG: printing zero
 		System.out.println(value);
+		
 		pairExpList.getExpList().accept(this);
 	}
 	
