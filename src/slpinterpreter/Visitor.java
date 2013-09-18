@@ -1,5 +1,11 @@
 package slpinterpreter;
 
+/* File: Visitor.java
+ * By: Joey DeFrancesco
+ * Description: TODO
+ * 
+ */
+
 public interface Visitor {
 	
 	// Stm visitors

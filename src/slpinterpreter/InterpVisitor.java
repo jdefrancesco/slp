@@ -1,5 +1,11 @@
 package slpinterpreter;
 
+/* File: InterpVisitor.java
+ * By: Joey DeFrancesco
+ * Description: TODO
+ * 
+ */
+
 import java.util.Map;
 
 public class InterpVisitor implements Visitor {
@@ -7,7 +13,6 @@ public class InterpVisitor implements Visitor {
 	// Our "namespace" for the identifiers. Stores varibles and their vaues
 	private Map<String, Integer> env;
 	private int value;
-	
 	
 	// Constructor for InterpVisitor -- Called by Interpreter.java interp() method 
 	public InterpVisitor(Map<String, Integer> envArg) {
