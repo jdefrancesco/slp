@@ -2,7 +2,7 @@ package slpinterpreter;
 
 /* File: Program.java
  * By: Joey DeFrancesco
- * Description: TODO
+ * Description: Contains programds ran by interpreter
  * 
  */
 
@@ -18,7 +18,6 @@ public class Program {
 			new PrintStm(new LastExpList(new IdExp("b")))));
 	
 	
-	
 	// Program One
 	static Stm prog1 = new AssignStm("a", new NumExp(10));	
 	
@@ -27,5 +26,8 @@ public class Program {
 	
 	// Program Three
 	static Stm prog3 = new CompoundStm(new AssignStm("a", new OpExp(new NumExp(5), OpExp.Plus, new NumExp(3))), new PrintStm(new LastExpList(new IdExp("a"))));
+	
+	// Program Four
+	//static Stm prog4
 
 }

@@ -2,7 +2,8 @@ package slpinterpreter;
 
 /* File: slp.java
  * By: Joey DeFrancesco
- * Description: TODO
+ * Description: Contains all the element classes needed for the straight line programming language such as
+ * 				classes for statements, expressions, etc..
  * 
  */
 
@@ -36,7 +37,7 @@ class CompoundStm extends Stm {
 
 	@Override
 	public void accept(Visitor e) { 
-		e.visitCompoundStm(this); 
+		e.visit(this); 
 	}
 	
 	// Getters/Setters
@@ -61,7 +62,7 @@ class AssignStm extends Stm {
 	
 	@Override
 	public void accept(Visitor e) { 
-		e.visitAssignStm(this);
+		e.visit(this);
 	}
 	
 	// Getters/Setters
@@ -86,7 +87,7 @@ class PrintStm extends Stm {
 	
 	@Override
 	public void accept(Visitor e) { 
-		e.visitPrintStm(this);
+		e.visit(this);
 	}
 
 	// Getters/Setters
@@ -108,7 +109,7 @@ class IdExp extends Exp {
 	
 	@Override
 	public void accept(Visitor e) { 
-		e.visitIdExp(this);
+		e.visit(this);
 	}
 	
 	// Getters/Setters
@@ -127,7 +128,7 @@ class NumExp extends Exp {
 	
 	@Override
 	public void accept(Visitor e) { 
-		e.visitNumExp(this);
+		e.visit(this);
 	}
 	
 	// Setters/Getters
@@ -151,7 +152,7 @@ class OpExp extends Exp {
 	
 	@Override
 	public void accept(Visitor e) { 
-		e.visitOpExp(this);
+		e.visit(this);
 	}
 	
 	// Setters/Getters
@@ -182,7 +183,7 @@ class EseqExp extends Exp {
 	
 	@Override
 	public void accept(Visitor e) { 
-		e.visitEseqExp(this);
+		e.visit(this);
 	}
 	
 	// Getters/Setters
@@ -210,7 +211,7 @@ class PairExpList extends ExpList {
 	
 	@Override
 	public void accept(Visitor e) { 
-		e.visitPairExpList(this);
+		e.visit(this);
 	}
 	
 	// Getters/Setters
@@ -233,7 +234,7 @@ class LastExpList extends ExpList {
 	
 	@Override
 	public void accept(Visitor e) { 
-		e.visitLastExpList(this);
+		e.visit(this);
 	}
 	
 	// Getters/Setters

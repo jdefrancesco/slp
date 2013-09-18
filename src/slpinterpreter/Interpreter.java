@@ -2,7 +2,8 @@ package slpinterpreter;
 
 /* File: Interpreter.java
  * By: Joey DeFrancesco
- * Description: TODO
+ * Description: main() contained in this file. Launches interpreter as well as calls maxArgs().
+ * 				maxArgs and its helper methods are implemented in this file as a static methods.
  */
 
 import java.util.HashMap;
@@ -104,8 +105,11 @@ public class Interpreter {
         // Program Two
         //interp(Program.prog2);
 		
-		// Program 
+		// Program Three
 		//interp(Program.prog3);
+		
+		// Program Four -- add..
+		//interp(Program.prog4);
         
     }
 }

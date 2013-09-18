@@ -2,24 +2,24 @@ package slpinterpreter;
 
 /* File: Visitor.java
  * By: Joey DeFrancesco
- * Description: TODO
+ * Description: Visitor interface! Classes implementing this interface need these methods.
  * 
  */
 
 public interface Visitor {
 	
 	// Stm visitors
-	void visitCompoundStm(CompoundStm stm );
-	void visitAssignStm(AssignStm stm);
-	void visitPrintStm(PrintStm stm);
+	void visit(CompoundStm stm );
+	void visit(AssignStm stm);
+	void visit(PrintStm stm);
 	
 	// Exp visitors
-	void visitIdExp(IdExp exp) ;
-	void visitNumExp(NumExp exp);
-	void visitOpExp(OpExp exp);
-	void visitEseqExp(EseqExp exp);
+	void visit(IdExp exp) ;
+	void visit(NumExp exp);
+	void visit(OpExp exp);
+	void visit(EseqExp exp);
 	
 	// ExpList visitors
-	void visitPairExpList(PairExpList pairExpList);
-	void visitLastExpList(LastExpList lastExpList);
+	void visit(PairExpList pairExpList);
+	void visit(LastExpList lastExpList);
 }

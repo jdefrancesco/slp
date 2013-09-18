@@ -2,7 +2,9 @@ package slpinterpreter;
 
 /* File: InterpVisitor.java
  * By: Joey DeFrancesco
- * Description: TODO
+ * Description: Contains visitor methods that perform operations for each statement.
+ * 				Methods are all mutual recursive called by corresponding classes in slp.java.
+ * 				NOTE: Double dispatch is used to determine which visit() method to call.
  * 
  */
 
@@ -20,24 +22,24 @@ public class InterpVisitor implements Visitor {
 	}
 	
 	// Stm visitors
-	public void visitCompoundStm(CompoundStm stm) {
+	public void visit(CompoundStm stm) {
 		stm.getStmOne().accept(this);
 		stm.getStmTwo().accept(this);
 	}
 	
-	public void visitAssignStm(AssignStm stm) {
+	public void visit(AssignStm stm) {
 		stm.getExp().accept(this);
 		// Insert identifier into our environment.. (map) note value is global
 		env.put(stm.getId(), value);
 	}
 	
-	public void visitPrintStm(PrintStm stm) {
+	public void visit(PrintStm stm) {
 		stm.getExpList().accept(this);
 	}
 	
 	
 	// Exp visitors
-	public void visitIdExp(IdExp exp) {
+	public void visit(IdExp exp) {
 		Integer retValue = env.get(exp.getId());
 		
 		if (retValue == null) {
@@ -48,11 +50,11 @@ public class InterpVisitor implements Visitor {
 		this.value = retValue.intValue();
 	}
 	
-	public void visitNumExp(NumExp exp) {
+	public void visit(NumExp exp) {
 		value = exp.getNumber();
 	}
 	
-	public void visitOpExp(OpExp exp) {
+	public void visit(OpExp exp) {
 		int temp;
 		
 		// Switch statement handles the operation to perform 
@@ -89,23 +91,21 @@ public class InterpVisitor implements Visitor {
 		}
 	}
 	
-	public void visitEseqExp(EseqExp exp) {
+	public void visit(EseqExp exp) {
 		exp.getStm().accept(this);
 		exp.getExp().accept(this);
 	}
 	
-	
 	// ExpList visitors
 	
 	// This will actually output our results when time comes
-	public void visitPairExpList(PairExpList pairExpList) {
+	public void visit(PairExpList pairExpList) {
 		pairExpList.getExp().accept(this);
 		System.out.println(value);
 		pairExpList.getExpList().accept(this);
 	}
-	
-	
-	public void visitLastExpList(LastExpList lastExpList) {
+		
+	public void visit(LastExpList lastExpList) {
 		lastExpList.getExp().accept(this);
 		System.out.println(value);
 	}
